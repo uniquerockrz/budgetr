@@ -19,7 +19,7 @@ class Ledger:
         self.data_folder_path = data_folder_path
         logging.basicConfig(filename='app.log', encoding='utf-8', level=logging.DEBUG)
         logging.debug('Init Transactions')
-        if (os.path.exists(self.data_folder_path) and os.path.isdir(self.data_folder_path)):
+        if self.check_if_folder_exists():
             logging.debug('Data folder found')
             pass
         else:
@@ -27,5 +27,13 @@ class Ledger:
             warnings.warn('Data folder path is not a valid path!')
         pass
 
-    def say_hello():
-        print('Hello, World!')
+    def check_if_folder_exists(self):
+        """Check if the folder for the data folder exists
+
+        Returns:
+            boolean: True if the path exists, else false
+        """
+        if (os.path.exists(self.data_folder_path) and os.path.isdir(self.data_folder_path)):
+            return True
+        else:
+            return False
